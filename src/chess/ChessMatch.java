@@ -26,10 +26,11 @@ public class ChessMatch {
 	}
 	
 	public ChessPiece perfomeChessMove(ChessPosition sourePosition, ChessPosition targetPosition) {
-		Position soure = sourePosition.toPosition();
+		Position source = sourePosition.toPosition();
 		Position target = targetPosition.toPosition();
-		validateSourcePosition(soure);
-		Piece capturePiece = makeMove(soure, target);
+		validateSourcePosition(source);
+		ValidadetargetPosition(source, target);
+		Piece capturePiece = makeMove(source, target);
 		return (ChessPiece) capturePiece;
 	}
 	
@@ -46,6 +47,12 @@ public class ChessMatch {
 		}
 		if (!board.piece(position).isThereAnyPosibleMove()) {
 			throw new ChessExeception("There is no possible moves for the chosen pieces");
+		}
+	}
+	
+	private void ValidadetargetPosition(Position source, Position target) {
+		if (!board.piece(source).possibleMove(target)) {
+			throw new ChessExeception("The chosen piece can't move to target position");
 		}
 	}
 

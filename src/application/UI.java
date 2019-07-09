@@ -3,6 +3,7 @@ package application;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import chess.ChessMatch;
 import chess.ChessPiece;
 import chess.ChessPosition;
 import chess.Color;
@@ -43,35 +44,42 @@ public class UI {
 			throw new InputMismatchException("Error reading ChessPosition. Valid values are from a1 to h8.");
 		}
 	}
+	
+	public static void printMatch(ChessMatch chessMatch) {
+		printBoard(chessMatch.getPiece());
+		System.out.println();
+		System.out.println("Turn : " + chessMatch.getTurn());
+		System.out.println("Waiting player : " + chessMatch.getCurrentPlayer());
+	}
 
 	public static void printBoard(ChessPiece[][] pieces) {
 		for (int i = 0; i < pieces.length; i++) {
-			System.out.print(WHITE + (8 - i) + BLACK_BACKGROUND + " " + BLACK_BACKGROUND);
+			System.out.print(WHITE + BLACK_BACKGROUND + (8 - i) + BLACK_BACKGROUND + " ");
 			for (int j = 0; j < pieces.length; j++) {
 				printPiece(pieces[i][j], false);
 			}
 			System.out.println(RESET_COLOR);
 		}
-		System.out.println(WHITE + "  a b c d e f g h " + BLACK_BACKGROUND);
+		System.out.println(WHITE + BLACK_BACKGROUND + "  a b c d e f g h ");
 	}
 
 	public static void printBoard(ChessPiece[][] pieces, boolean[][] posibleMoves) {
 		for (int i = 0; i < pieces.length; i++) {
-			System.out.print(WHITE + (8 - i) + BLACK_BACKGROUND + " " + BLACK_BACKGROUND);
+			System.out.print(WHITE + BLACK_BACKGROUND + (8 - i) + BLACK_BACKGROUND + " ");
 			for (int j = 0; j < pieces.length; j++) {
 				printPiece(pieces[i][j], posibleMoves[i][j]);
 			}
 			System.out.println(RESET_COLOR);
 		}
-		System.out.println(WHITE + "  a b c d e f g h " + BLACK_BACKGROUND);
+		System.out.println(WHITE + BLACK_BACKGROUND + "  a b c d e f g h ");
 	}
-
+	
 	private static void printPiece(ChessPiece piece, boolean background) {
 		if (background) {
-			System.out.print(WHITE + RED_BACKGROUND);
+			System.out.print(RED_BACKGROUND);
 		}
 		if (piece == null) {
-			System.out.print(WHITE + "-" + BLACK_BACKGROUND);
+			System.out.print(CYAN + "-" + BLACK_BACKGROUND);
 		} else {
 			if (piece.getColor() == Color.WHITE) {
 				System.out.print(WHITE + piece + BLACK_BACKGROUND);
@@ -81,4 +89,5 @@ public class UI {
 		}
 		System.out.print(" " + BLACK_BACKGROUND);
 	}
+	
 }

@@ -57,7 +57,7 @@ public class Board {
 		pieces[position.getRow()][position.getColums()] = null;
 		return aux;
 	}
-	
+
 	private boolean positionExists(int row, int column) {
 		return row >= 0 && row < rows && column >= 0 && column < columns;
 	}

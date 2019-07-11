@@ -50,8 +50,8 @@ public class UI {
 
 	public static void printMatch(ChessMatch chessMatch, List<ChessPiece> captured) {
 		printBoard(chessMatch.getPiece());
-		System.out.println();
-		printCaptuPieces(captured);
+		System.out.println(RESET_COLOR);
+		printCapturedPieces(captured);
 		System.out.println();
 		System.out.println("Turn : " + chessMatch.getTurn());
 		if (!chessMatch.getCheckMate()) {
@@ -67,29 +67,29 @@ public class UI {
 
 	public static void printBoard(ChessPiece[][] pieces) {
 		for (int i = 0; i < pieces.length; i++) {
-			System.out.print(WHITE + BLACK_BACKGROUND + (8 - i) + BLACK_BACKGROUND + " ");
+			System.out.print(BLACK + WHITE_BACKGROUND + (8 - i) + BLACK_BACKGROUND + " ");
 			for (int j = 0; j < pieces.length; j++) {
 				printPiece(pieces[i][j], false);
 			}
 			System.out.println(RESET_COLOR);
 		}
-		System.out.println(WHITE + BLACK_BACKGROUND + "  a b c d e f g h ");
+		System.out.println(" " + BLACK + WHITE_BACKGROUND + " a b c d e f g h ");
 	}
 
 	public static void printBoard(ChessPiece[][] pieces, boolean[][] posibleMoves) {
 		for (int i = 0; i < pieces.length; i++) {
-			System.out.print(WHITE + BLACK_BACKGROUND + (8 - i) + BLACK_BACKGROUND + " ");
+			System.out.print(BLACK + WHITE_BACKGROUND + (8 - i) + BLACK_BACKGROUND + " ");
 			for (int j = 0; j < pieces.length; j++) {
 				printPiece(pieces[i][j], posibleMoves[i][j]);
 			}
 			System.out.println(RESET_COLOR);
 		}
-		System.out.println(WHITE + BLACK_BACKGROUND + "  a b c d e f g h ");
+		System.out.println(" " + BLACK + WHITE_BACKGROUND + " a b c d e f g h ");
 	}
 
 	private static void printPiece(ChessPiece piece, boolean background) {
 		if (background) {
-			System.out.print(RED_BACKGROUND);
+			System.out.print(WHITE + RED_BACKGROUND);
 		}
 		if (piece == null) {
 			System.out.print(CYAN + "-" + BLACK_BACKGROUND);
@@ -103,7 +103,7 @@ public class UI {
 		System.out.print(" " + BLACK_BACKGROUND);
 	}
 
-	private static void printCaptuPieces(List<ChessPiece> capture) {
+	private static void printCapturedPieces(List<ChessPiece> capture) {
 		List<ChessPiece> white = capture.stream().filter(x -> x.getColor() == Color.WHITE).collect(Collectors.toList());
 		List<ChessPiece> black = capture.stream().filter(x -> x.getColor() == Color.BLACK).collect(Collectors.toList());
 		System.out.print("White: ");

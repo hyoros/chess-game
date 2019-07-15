@@ -8,8 +8,8 @@ import java.util.stream.Collectors;
 
 import chess.ChessMatch;
 import chess.ChessPiece;
+import chess.ChessPiece.Color;
 import chess.ChessPosition;
-import chess.Color;
 
 public class UI {
 
@@ -37,7 +37,7 @@ public class UI {
 		System.out.flush();
 	}
 
-	public static ChessPosition readChessPsoition(Scanner sc) {
+	public static ChessPosition readChessPosition(Scanner sc) {
 		try {
 			String s = sc.nextLine();
 			char column = s.charAt(0);
